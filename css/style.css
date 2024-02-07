@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* kita reset semua margin dan paddingnya */
+}
+
+body{
+    font-family: "Montserrat",sans-serif;
+    overflow-x: hidden;
+}
+
+/* navbar */
+nav{
+    display: flex;
+    background-color: #44749d;
+    justify-content: space-around;
+    /* padding: 20px 0; */
+    color: #fff;
+    height: 50px;
+    align-items: center;
+    /* Berbeda dengan justify content yang mengatur kesejajaran antar 
+    tems secara horizontal, align items ini mensejajarkan secara vertikal. */
+}
+nav .logo h4{
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 3px;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    /* list style none digunakan untuk mengilangkan titik2nya */
+    width: 40%;
+    justify-content: space-between;
+    /* width dan justify content di atas untuk memberikan jarak 
+    pada ul */
+}
+
+nav ul li a{
+    color:  #c6d4e1;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+nav ul li a:hover{
+    color: rgb(239, 233, 245);
+}
+
+/* HAMBURGER MENU */
+.menu-toggle {
+    display: none;
+    /* kalau dilebar normal, kita beri displaynya none.
+    tapi nanti kita berikan display di media querynya */
+    flex-direction: column;
+    /* flex direction untuk mengatur arah dari elemen elemen di dalam containernya. 
+    column artinya atur arah dari atas ke bawah, 
+    kita atur 3 span berurutan dari atas ke bawah*/
+    height: 20px;
+    /* height 20px agar span didalamnya punya jarak */
+    justify-content: space-between;
+    /* kita atur 3 span didalamnya dgn space between */
+    position: relative;
+    /* karena input checkbox kita buat absolute, 
+    maka menu toggle sbg parent harus kita jadikan relative. */
+}
+
+
+/* ini untuk input type checkbox */
+.menu-toggle input{
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    /* width dan height untuk mengatur
+    ukuran checkboxnya */
+    opacity: 0;
+    /* kita buat transparan */
+    left: -5px;
+    top: -5px;
+    /* kita atur posisinya */
+    cursor: pointer;
+    /* kita ubah mouse nya agar ada feedbacknya */
+    z-index: 2;
+    /* kita letakan checkbox di paling depan dalam
+    class menu toggle dgn z-index */
+}
+
+.menu-toggle span{
+    display: block;
+    /* ingat nilai default display span adalah inline.
+    jadi kita ubah ke block */
+    width: 28px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.5s;
+    /* transition ini untuk animasi pada class
+    menu toggle span */
+}
+
+
+/* hamburger menu animation */
+
+/* kita buat animasi spannya saat diklik. */
+
+.menu-toggle span:nth-child(2){
+    transform-origin: 0 0;
+    /* transform origin untuk mengubah poros dari gerakan
+    transform rotate, karena defaultnya kan ada di tengah */
+    /* sumbu x - y . karena kita mau di atas kiri, jadi kita 
+    beri x nya 0 dan y nya juga 0*/
+    /* transform origin diperlukan jika kita ingin muterin poros
+    dari suatu elemen */
+}
+.menu-toggle span:nth-child(4){
+    transform-origin: 0 100%;
+}
+
+/* kita  targetkan checkboxnya, atau saat checkboxnya
+diklik */
+.menu-toggle input:checked ~ span:nth-child(2){
+    background-color: white;
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/*  cara bacanya, jadi ketika menu input yang ada pada class
+menu toggle kita checked/klik/tandai, cari css yang merupakan 
+siblings yang span dimana span itu anak kedua*/
+
+.menu-toggle input:checked ~ span:nth-child(4){
+    background-color: white;
+    transform: rotate(-45deg) translate(-1px, 0);
+}
+
+
+/* kita animasikan agar span yang ditengah menghilang */
+.menu-toggle input:checked ~ span:nth-child(3){
+    opacity: 0;
+    transform: scale(0);
+}
+
+
+
+/* RESPONSIVE BREAKPOINT */
+/* res breakpoint digunakan agar link tidak berdempet
+saat di layar ukuran kecil. kita buat 3 kondisi breakpoint */
+
+/* ukuran tablet  atau smartphone kita 
+saat landscape*/
+@media  screen and (max-width: 768px){
+    nav ul {
+        width: 50%;
+    }
+}
+/* cara bacanya, jadi ketika medianya adalah layar,
+dan lebar maksimalnya 760px apa yang mau berubah...*/
+
+
+/* ukuran mobile */
+@media  screen and (max-width: 576px){
+    .menu-toggle{
+        display: flex;
+        /* ini untuk mengganti display none yang diatas */
+    }
+
+
+    /* nav ul dibawah untuk membuat slide di samping kanan */
+    nav ul {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 80%;
+        height: 100vh;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        background-color:#44749d;
+        z-index: -1;
+        /* kita turunkan kebawah nav ul yang samping kanan ini,
+        agar berada di bawah nav ul pada ukuran normal.
+        agar yang ini tidak menimpa  */
+        transform: translateX(100%);
+        /* kita buat ada di kanan dengan translateX 100%,
+        lalu kita sembunyikan scrollnya dgn 
+        overflow x hidden pada body */
+        transition: all 1s;
+        opacity: 0;
+    }
+
+    nav ul.slide {
+        opacity: 1;
+        transform: translateX(0);
+        /* artinya kalau ul punya kelas slide, balikan  posisi
+        translateX nya jadi 0. 0 ini nilai default/semula */
+    }
+}

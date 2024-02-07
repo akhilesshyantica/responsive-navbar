@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Responsive Navbar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- nav untuk membungkus semuanya. 
+    navbar yang akan kita buat nanti dalam tag nav -->
+        <nav>
+            <div class="logo">
+                <h4>Toko Sembako Shyantica</h4>
+            </div>
+
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Product</a></li>
+                <li><a href="">Service</a></li>
+                <li><a href="">Gallery</a></li>
+                <li><a href="">About</a></li>
+            </ul>
+
+            <!-- untuk hamburger menu-->
+            <div class="menu-toggle">
+                <!-- kita buat checkbox transparan diatas span.
+                disini kita tidak menggunakan javascript, melainkan css.
+                agar kita melihat apakah checkbox nanti di check
+                apa tidak, untuk menentukan kapan animasi dari 
+                hamburger ini bekerja-->
+                <input type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <!-- jadi class menu toggle punya 4 child dimulai dari
+        input, span pertama, kedua dan terakhir ke tiga -->
+
+
+        <script src="script.js"></script>
+
+</body>
+</html>
